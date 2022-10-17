@@ -1,0 +1,44 @@
+<main>
+    <mat-dialog-content>
+        <form class="recipeForm" [formGroup]="recipeForm">
+            <input type="text" placeholder="Recipe Name" formControlName="name">
+            <div>
+                <div formArrayName="ingredients">
+                    <div *ngFor="let ingredient of ingredientsArray.controls; index as i">
+                        <div [formGroup]="ingredient">
+                            <input type="number" placeholder="Quantity" formControlName="quantity">
+                            <input type="text" placeholder="Units" formControlName="units">
+                            <input type="text" placeholder="Ingredient" formControlName="name">
+                            <button mat-raised-button (click)="removeIngredient(i)" [hidden]="ingredientsArray.length === 1">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button mat-fab (click)="addIngredient()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <div>
+                <div formArrayName="directions">
+                    <div *ngFor="let direction of directionsArray.controls; index as i">
+                        <div [formGroup]="direction">
+                            <div>{{i+1}}</div>
+                            <textarea placeholder="Instruction" formControlName="name"></textarea>
+                            <button mat-raised-button (click)="removeDirection(i)" [hidden]="directionsArray.length === 1">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button mat-fab (click)="addDirection()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button mat-dialog-close (click)="save()">Save Recipe</button>
+    </mat-dialog-actions>
+</main>

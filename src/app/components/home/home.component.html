@@ -1,0 +1,31 @@
+<main>
+    <h1>Feastfair</h1>
+    <div>
+        <div>
+            <h2>Cookbook Selection</h2>
+            <button mat-raised-button (click)="createCookbook()">Create Cookbook</button>
+            <div *ngIf="">Drag Here</div>
+            <button mat-raised-button (click)="file.click()">Browse</button>
+            <input #file type="file" (change)="openCookbook($event)" hidden>
+        </div>
+        <div>
+            <button mat-raised-button (click)="saveCookbook(); ">Save Cookbook</button>
+            <button mat-raised-button (click)="addRecipe()">New Recipe</button>
+        </div>
+    </div>
+    <div>
+        <h2>Recipe List</h2>
+        <mat-accordion>
+            <div *ngFor="let recipe of cookbook.recipies; index as i">
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{recipe.name}}</mat-panel-title>
+                        <button mat-raised-button (click)="editRecipe($event, i)">Edit</button>
+                        <button mat-raised-button (click)="removeRecipe($event, i)">Delete</button>
+                    </mat-expansion-panel-header>
+                    <app-recipe [recipe]="recipe"></app-recipe>
+                </mat-expansion-panel>
+            </div>
+        </mat-accordion>
+    </div>
+</main>

@@ -1,0 +1,14 @@
+<main>
+    <h4>Ingredients</h4>
+    <div *ngFor="let ingredient of recipe.ingredients">
+        <mat-checkbox>
+            {{ingredient.quantity}} {{ingredient.units}} {{ingredient.name}}
+        </mat-checkbox>
+    </div>
+    <h4>Directions</h4>
+    <mat-list>
+        <mat-list-item *ngFor="let direction of recipe.directions; index as i">
+            {{i+1}}. {{direction.name}}
+        </mat-list-item>
+    </mat-list>
+</main>
